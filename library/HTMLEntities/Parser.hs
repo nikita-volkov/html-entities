@@ -16,6 +16,7 @@ import qualified HTMLEntities.NamedTable as NamedTable
 -- 
 -- >>> parseOnly htmlEntity "&#169;"
 -- Right "\169"
+{-# INLINABLE htmlEntity #-}
 htmlEntity :: Parser Text
 htmlEntity =
   char '&' *> (numeric <|> named) <* char ';'
