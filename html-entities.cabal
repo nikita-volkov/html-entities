@@ -1,11 +1,11 @@
 name:
   html-entities
 version:
-  1.0.0.1
+  1.0.0.2
 synopsis:
   An "attoparsec" parser and a decoder of HTML entities
 category:
-  Parsing, Codecs
+  Parsing, Codecs, HTML
 homepage:
   https://github.com/nikita-volkov/html-entities
 bug-reports:
