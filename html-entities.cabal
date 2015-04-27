@@ -1,7 +1,7 @@
 name:
   html-entities
 version:
-  1.0.0.2
+  1.0.0.3
 synopsis:
   An "attoparsec" parser and a decoder of HTML entities
 category:

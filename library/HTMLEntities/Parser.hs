@@ -11,11 +11,16 @@ import qualified HTMLEntities.NamedTable as NamedTable
 -- |
 -- A parser of a single entity.
 -- 
--- >>> parseOnly htmlEntity "&copy;"
--- Right "\169"
+-- Parses numeric encoding:
 -- 
--- >>> parseOnly htmlEntity "&#169;"
--- Right "\169"
+-- >>> mapM_ Data.Text.IO.putStrLn $ Data.Attoparsec.Text.parseOnly htmlEntity "&#169;"
+-- ©
+-- 
+-- as well as named entities:
+-- 
+-- >>> mapM_ Data.Text.IO.putStrLn $ Data.Attoparsec.Text.parseOnly htmlEntity "&copy;"
+-- ©
+-- 
 {-# INLINABLE htmlEntity #-}
 htmlEntity :: Parser Text
 htmlEntity =

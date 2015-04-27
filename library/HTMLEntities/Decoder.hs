@@ -14,8 +14,8 @@ type Decoder a =
 -- |
 -- A decoder of a single entity.
 -- 
--- >>> htmlEntity "&#169;"
--- Right "\169"
+-- >>> mapM_ Data.Text.IO.putStrLn $ htmlEntity "&#169;"
+-- ©
 htmlEntity :: Decoder Text
 htmlEntity =
   P.parseOnly $
@@ -26,10 +26,11 @@ htmlEntity =
 -- 
 -- Produces a text builder, 
 -- which you can then convert into a text or a lazy text,
--- using the \"text\" library.
+-- using the <http://hackage.haskell.org/package/text "text"> or 
+-- <http://hackage.haskell.org/package/conversion-text "conversion-text"> library.
 -- 
--- >>> fmap TLB.toLazyText $ htmlEncodedText "&euro;5 &cent;2"
--- Right "\8364\&5 \162\&2"
+-- >>> mapM_ (Data.Text.Lazy.IO.putStrLn . Data.Text.Lazy.Builder.toLazyText) $ htmlEncodedText "&euro;5 &cent;2"
+-- €5 ¢2
 htmlEncodedText :: Decoder TLB.Builder
 htmlEncodedText =
   P.parseOnly $
