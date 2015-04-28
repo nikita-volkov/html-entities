@@ -1,9 +1,18 @@
 name:
   html-entities
 version:
-  1.0.0.3
+  1.0.1.0
 synopsis:
-  An "attoparsec" parser and a decoder of HTML entities
+  A codec library for HTML-escaped text and HTML-entities
+description:
+  This library provides the following APIs for coding and decoding of
+  HTML-escaped text:
+  .
+  * "attoparsec" parser
+  .
+  * Text decoder
+  .
+  * Encoding text builder
 category:
   Parsing, Codecs, HTML
 homepage:
