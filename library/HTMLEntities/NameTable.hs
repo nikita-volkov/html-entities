@@ -1,19 +1,40 @@
 -- |
 -- A named entities table as per
 -- <https://html.spec.whatwg.org/multipage/entities.json>.
-module HTMLEntities.NamedTable where
+module HTMLEntities.NameTable
+(
+  lookupTextByName,
+  lookupNameByText,
+)
+where
 
 import HTMLEntities.Prelude
 import qualified Data.HashMap.Strict as HM
 
 
-lookup :: Text -> Maybe Text
-lookup k = 
-  HM.lookup k table
+{-# INLINE lookupTextByName #-}
+lookupTextByName :: Text -> Maybe Text
+lookupTextByName k = 
+  HM.lookup k textByNameTable
 
-table :: HM.HashMap Text Text
-table =
-  HM.fromList
+{-# INLINE lookupNameByText #-}
+lookupNameByText :: Text -> Maybe Text
+lookupNameByText k = 
+  HM.lookup k nameByTextTable
+
+{-# NOINLINE textByNameTable #-}
+textByNameTable :: HM.HashMap Text Text
+textByNameTable =
+  HM.fromList list
+
+{-# NOINLINE nameByTextTable #-}
+nameByTextTable :: HM.HashMap Text Text
+nameByTextTable =
+  HM.fromList $ map swap list
+
+{-# INLINE list #-}
+list :: [(Text, Text)]
+list =
   [
     ("Aacute", "\x00C1"),
     ("Aacute", "\x00C1"),

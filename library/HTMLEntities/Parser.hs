@@ -5,7 +5,7 @@ module HTMLEntities.Parser where
 import HTMLEntities.Prelude
 import Data.Attoparsec.Text
 import qualified Data.Text as Text
-import qualified HTMLEntities.NamedTable as NamedTable
+import qualified HTMLEntities.NameTable as NameTable
 
 
 -- |
@@ -29,6 +29,6 @@ htmlEntity =
     numeric =
       Text.singleton . chr <$> (char '#' *> (decimal <|> (char 'x' *> hexadecimal)))
     named =
-      takeWhile1 isAlpha >>= liftMaybe . NamedTable.lookup
+      takeWhile1 isAlpha >>= liftMaybe . NameTable.lookupTextByName
     liftMaybe =
       maybe empty pure
