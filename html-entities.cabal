@@ -40,6 +40,7 @@ library
     HTMLEntities.NameTable
     HTMLEntities.Prelude
   exposed-modules:
+    HTMLEntities.Builder
     HTMLEntities.Parser
     HTMLEntities.Decoder
   build-depends:
