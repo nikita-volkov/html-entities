@@ -8,15 +8,12 @@ import qualified Data.Attoparsec.Text as P
 import qualified HTMLEntities.Parser as P
 
 
-type Decoder a =
-  Text -> Either String a
-
 -- |
 -- A decoder of a single entity.
 -- 
 -- >>> mapM_ Data.Text.IO.putStrLn $ htmlEntity "&#169;"
 -- ©
-htmlEntity :: Decoder Text
+htmlEntity :: Text -> Either String Text
 htmlEntity =
   P.parseOnly $
   P.htmlEntity <* P.endOfInput
@@ -31,8 +28,9 @@ htmlEntity =
 -- 
 -- >>> mapM_ (Data.Text.Lazy.IO.putStrLn . Data.Text.Lazy.Builder.toLazyText) $ htmlEncodedText "&euro;5 &cent;2"
 -- €5 ¢2
-htmlEncodedText :: Decoder TLB.Builder
+htmlEncodedText :: Text -> TLB.Builder
 htmlEncodedText =
+  fmap (either (error "HTMLEntities.Decoder: impossible happened") id) $
   P.parseOnly $
   fmap fold $
   many $
