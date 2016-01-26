@@ -26,7 +26,7 @@ htmlEntity =
 -- using the <http://hackage.haskell.org/package/text "text"> or 
 -- <http://hackage.haskell.org/package/conversion-text "conversion-text"> library.
 -- 
--- >>> mapM_ (Data.Text.Lazy.IO.putStrLn . Data.Text.Lazy.Builder.toLazyText) $ htmlEncodedText "&euro;5 &cent;2"
+-- >>> Data.Text.Lazy.IO.putStrLn $ Data.Text.Lazy.Builder.toLazyText $ htmlEncodedText "&euro;5 &cent;2"
 -- €5 ¢2
 htmlEncodedText :: Text -> TLB.Builder
 htmlEncodedText =
