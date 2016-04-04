@@ -1,7 +1,7 @@
 name:
   html-entities
 version:
-  1.1.0.0
+  1.1.1
 synopsis:
   A codec library for HTML-escaped text and HTML-entities
 description:
@@ -56,7 +56,7 @@ library
     unordered-containers == 0.2.*,
     text >= 1 && < 2,
     attoparsec >= 0.10 && < 0.14,
-    base-prelude >= 0.1.19 && < 0.2
+    base-prelude >= 0.1.19 && < 2
   ghc-options:
     -funbox-strict-fields
   default-extensions:
