@@ -49,6 +49,7 @@ library
     HTMLEntities.NameTable
     HTMLEntities.Prelude
   exposed-modules:
+    HTMLEntities.Text
     HTMLEntities.Builder
     HTMLEntities.Parser
     HTMLEntities.Decoder
