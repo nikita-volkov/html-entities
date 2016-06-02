@@ -29,4 +29,6 @@ htmlEntity =
     numeric =
       Text.singleton . chr <$> (char '#' *> (decimal <|> (char 'x' *> hexadecimal)))
     named =
-      takeWhile1 isAlpha >>= maybe (fail "empty") string . NameTable.lookupTextByName
+      takeWhile1 isAlpha >>= liftMaybe . NameTable.lookupTextByName
+    liftMaybe =
+      maybe empty pure
