@@ -16,15 +16,33 @@ import qualified HTMLEntities.NameTable as NameTable
 -- >>> mapM_ Data.Text.IO.putStrLn $ Data.Attoparsec.Text.parseOnly htmlEntity "&#169;"
 -- ©
 -- 
--- as well as named entities:
+-- as well as the named entities:
 -- 
 -- >>> mapM_ Data.Text.IO.putStrLn $ Data.Attoparsec.Text.parseOnly htmlEntity "&copy;"
 -- ©
 -- 
-{-# INLINABLE htmlEntity #-}
+{-# INLINE htmlEntity #-}
 htmlEntity :: Parser Text
 htmlEntity =
-  char '&' *> (numeric <|> named) <* char ';'
+  char '&' *> htmlEntityBody <* char ';'
+
+-- |
+-- A parser of the body of a single entity.
+-- 
+-- Parses numeric encoding:
+-- 
+-- >>> mapM_ Data.Text.IO.putStrLn $ Data.Attoparsec.Text.parseOnly htmlEntityBody "#169"
+-- ©
+-- 
+-- as well as the named entities:
+-- 
+-- >>> mapM_ Data.Text.IO.putStrLn $ Data.Attoparsec.Text.parseOnly htmlEntityBody "copy"
+-- ©
+-- 
+{-# INLINABLE htmlEntityBody #-}
+htmlEntityBody :: Parser Text
+htmlEntityBody =
+  numeric <|> named
   where
     numeric =
       Text.singleton . chr <$> (char '#' *> (decimal <|> (char 'x' *> hexadecimal)))

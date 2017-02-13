@@ -19,6 +19,16 @@ htmlEntity =
   P.htmlEntity <* P.endOfInput
 
 -- |
+-- A decoder of a single entity.
+-- 
+-- >>> mapM_ Data.Text.IO.putStrLn $ htmlEntityBody "#169"
+-- ©
+htmlEntityBody :: Text -> Either String Text
+htmlEntityBody =
+  P.parseOnly $
+  P.htmlEntityBody <* P.endOfInput
+
+-- |
 -- A decoder of a text with entities.
 -- 
 -- Produces a text builder, 
