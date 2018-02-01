@@ -3,7 +3,7 @@ env:
   - ghc=7.8.4  cabal=1.24
   - ghc=7.10.3 cabal=1.24
   - ghc=8.0.1  cabal=1.24
-  - ghc=8.2.1  cabal=1.24 benchmarks=1 tests=1
+  - ghc=8.2.1  cabal=2.0 benchmarks=1 tests=1
   
 install:
   # Set up the Shell to treat the semicolon as &&
@@ -52,4 +52,5 @@ script:
     then
       cabal clean;
       cabal test --show-details=always;
+      cabal doctest;
     fi;
