@@ -32,6 +32,12 @@ install:
         "--constraint=attoparsec==0.10.*"
       );
     fi;
+  # Install Doctest if needed
+  -
+    if [ "$tests" = "1" ];
+    then
+      cabal install doctest;
+    fi;
   # Install the library dependencies
   - cabal install --only-dependencies --reorder-goals --force-reinstalls
       ${constraint_options[@]}
