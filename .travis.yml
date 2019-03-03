@@ -30,12 +30,6 @@ install:
       constraint_options=(
       );
     fi;
-  # Install Doctest if needed
-  -
-    if [ "$tests" = "1" ];
-    then
-      cabal install doctest;
-    fi;
   # Install the library dependencies
   - cabal install --only-dependencies --reorder-goals --force-reinstalls
       ${constraint_options[@]}
@@ -56,5 +50,4 @@ script:
     then
       cabal clean;
       cabal test --show-details=always;
-      cabal doctest;
     fi;
