@@ -1,7 +1,7 @@
 name:
   html-entities
 version:
-  1.1.4.4
+  1.1.4.5
 synopsis:
   A codec library for HTML-escaped text and HTML-entities
 description:
@@ -52,7 +52,7 @@ library
     HTMLEntities.NameTable
     HTMLEntities.Prelude
   build-depends:
-    attoparsec >=0.14 && <0.15,
+    attoparsec >=0.13 && <0.15,
     base >=4.11 && <5,
     text >=1 && <2,
     unordered-containers >=0.2 && <0.3
