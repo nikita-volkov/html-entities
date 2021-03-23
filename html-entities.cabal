@@ -1,7 +1,7 @@
 name:
   html-entities
 version:
-  1.1.4.3
+  1.1.4.4
 synopsis:
   A codec library for HTML-escaped text and HTML-entities
 description:
@@ -32,7 +32,7 @@ license-file:
 build-type:
   Simple
 cabal-version:
-  >= 1.24
+  >=1.24
 
 source-repository head
   type:
@@ -43,20 +43,19 @@ source-repository head
 library
   hs-source-dirs:
     library
-  other-modules:
-    HTMLEntities.NameTable
-    HTMLEntities.Prelude
   exposed-modules:
     HTMLEntities.Text
     HTMLEntities.Builder
     HTMLEntities.Parser
     HTMLEntities.Decoder
+  other-modules:
+    HTMLEntities.NameTable
+    HTMLEntities.Prelude
   build-depends:
-    unordered-containers == 0.2.*,
-    text >= 1 && < 2,
-    attoparsec >= 0.10 && < 0.14,
-    base-prelude >= 0.1.19 && < 2,
-    base < 5
+    attoparsec >=0.14 && <0.15,
+    base >=4.11 && <5,
+    text >=1 && <2,
+    unordered-containers >=0.2 && <0.3
   default-extensions:
     Arrows, BangPatterns, ConstraintKinds, DataKinds, DefaultSignatures, DeriveDataTypeable, DeriveFoldable, DeriveFunctor, DeriveGeneric, DeriveTraversable, EmptyDataDecls, FlexibleContexts, FlexibleInstances, FunctionalDependencies, GADTs, GeneralizedNewtypeDeriving, LambdaCase, LiberalTypeSynonyms, MagicHash, MultiParamTypeClasses, MultiWayIf, NoImplicitPrelude, NoMonomorphismRestriction, OverloadedStrings, PatternGuards, ParallelListComp, QuasiQuotes, RankNTypes, RecordWildCards, ScopedTypeVariables, StandaloneDeriving, TemplateHaskell, TupleSections, TypeFamilies, TypeOperators, UnboxedTuples
   default-language:
