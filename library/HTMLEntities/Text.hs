@@ -1,8 +1,7 @@
 module HTMLEntities.Text where
 
-import HTMLEntities.Prelude
 import qualified Data.Text as Text
-
+import HTMLEntities.Prelude
 
 -- |
 -- HTML-encodes the given char.
@@ -18,10 +17,9 @@ char =
 
 -- |
 -- HTML-encodes the given text.
--- 
+--
 -- >>> Data.Text.IO.putStrLn $ text "<a href=\"\">"
 -- &lt;a href=&quot;&quot;&gt;
--- 
 text :: Text -> Text
 text =
   Text.concatMap char

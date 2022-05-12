@@ -2,24 +2,22 @@
 -- A named entities table as per
 -- <https://html.spec.whatwg.org/multipage/entities.json>.
 module HTMLEntities.NameTable
-(
-  lookupTextByName,
-  lookupNameByText,
-)
+  ( lookupTextByName,
+    lookupNameByText,
+  )
 where
 
-import HTMLEntities.Prelude
 import qualified Data.HashMap.Strict as HM
-
+import HTMLEntities.Prelude
 
 {-# INLINE lookupTextByName #-}
 lookupTextByName :: Text -> Maybe Text
-lookupTextByName k = 
+lookupTextByName k =
   HM.lookup k textByNameTable
 
 {-# INLINE lookupNameByText #-}
 lookupNameByText :: Text -> Maybe Text
-lookupNameByText k = 
+lookupNameByText k =
   HM.lookup k nameByTextTable
 
 {-# NOINLINE textByNameTable #-}
@@ -35,8 +33,7 @@ nameByTextTable =
 {-# INLINE list #-}
 list :: [(Text, Text)]
 list =
-  [
-    ("Aacute", "\x00C1"),
+  [ ("Aacute", "\x00C1"),
     ("Aacute", "\x00C1"),
     ("aacute", "\x00E1"),
     ("aacute", "\x00E1"),
