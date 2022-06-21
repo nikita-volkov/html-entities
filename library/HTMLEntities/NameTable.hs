@@ -1,3 +1,7 @@
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE QuasiQuotes #-}
+
 -- |
 -- A named entities table as per
 -- <https://html.spec.whatwg.org/multipage/entities.json>.
@@ -32,7 +36,7 @@ nameByTextTable =
 
 {-# INLINE list #-}
 list :: [(Text, Text)]
-list =
+list = read [lit|
   [ ("Aacute", "\x00C1"),
     ("Aacute", "\x00C1"),
     ("aacute", "\x00E1"),
@@ -2265,3 +2269,4 @@ list =
     ("zwj", "\x200D"),
     ("zwnj", "\x200C")
   ]
+  |]

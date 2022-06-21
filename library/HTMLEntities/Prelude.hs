@@ -1,5 +1,6 @@
 module HTMLEntities.Prelude
   ( module Exports,
+    literally, lit, litFile
   )
 where
 
@@ -57,6 +58,8 @@ import GHC.Exts as Exports (IsList (..), groupWith, inline, lazy, sortWith)
 import GHC.Generics as Exports (Generic)
 import GHC.IO.Exception as Exports
 import GHC.OverloadedLabels as Exports
+import Language.Haskell.TH
+import Language.Haskell.TH.Quote
 import Numeric as Exports
 import System.Environment as Exports
 import System.Exit as Exports
@@ -71,3 +74,12 @@ import Text.ParserCombinators.ReadPrec as Exports (ReadPrec, readP_to_Prec, read
 import Text.Printf as Exports (hPrintf, printf)
 import Unsafe.Coerce as Exports
 import Prelude as Exports hiding (Read, all, and, any, concat, concatMap, elem, fail, foldl, foldl1, foldr, foldr1, id, mapM, mapM_, maximum, minimum, notElem, or, product, sequence, sequence_, sum, (.))
+
+literally :: String -> Q Exp
+literally = return . LitE . StringL
+
+lit :: QuasiQuoter
+lit = QuasiQuoter { quoteExp = literally }
+
+litFile :: QuasiQuoter
+litFile = quoteFile lit
