@@ -14,8 +14,9 @@ import HTMLEntities.Prelude
 -- ©
 htmlEntity :: Text -> Either String Text
 htmlEntity =
-  P.parseOnly $
-    P.htmlEntity <* P.endOfInput
+  P.parseOnly
+    $ P.htmlEntity
+    <* P.endOfInput
 
 -- |
 -- A decoder of a single entity.
@@ -24,8 +25,9 @@ htmlEntity =
 -- ©
 htmlEntityBody :: Text -> Either String Text
 htmlEntityBody =
-  P.parseOnly $
-    P.htmlEntityBody <* P.endOfInput
+  P.parseOnly
+    $ P.htmlEntityBody
+    <* P.endOfInput
 
 -- |
 -- A decoder of a text with entities.
@@ -39,8 +41,9 @@ htmlEntityBody =
 -- €5 ¢2
 htmlEncodedText :: Text -> TLB.Builder
 htmlEncodedText =
-  fmap (either (error "HTMLEntities.Decoder: impossible happened") id) $
-    P.parseOnly $
-      fmap fold $
-        many $
-          fmap TLB.fromText P.htmlEntity <|> fmap TLB.singleton P.anyChar
+  fmap (either (error "HTMLEntities.Decoder: impossible happened") id)
+    $ P.parseOnly
+    $ fmap fold
+    $ many
+    $ fmap TLB.fromText P.htmlEntity
+    <|> fmap TLB.singleton P.anyChar

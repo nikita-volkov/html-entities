@@ -9,8 +9,8 @@ import HTMLEntities.Prelude
 -- HTML-encodes the given char into a text builder.
 char :: Char -> Text.Builder
 char c =
-  fromMaybe (Text.Builder.singleton c) $
-    lookup c entitiesTable
+  fromMaybe (Text.Builder.singleton c)
+    $ lookup c entitiesTable
 
 -- |
 -- HTML-encodes the given text into a text builder.
