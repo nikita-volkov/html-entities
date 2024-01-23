@@ -1,3 +1,5 @@
+{-# LANGUAGE CPP #-}
+
 module HTMLEntities.Prelude
   ( module Exports,
   )
@@ -25,7 +27,13 @@ import Data.Either as Exports
 import Data.Fixed as Exports
 import Data.Foldable as Exports hiding (toList)
 import Data.Function as Exports hiding (id, (.))
+
+#if MIN_VERSION_base(4, 19, 0)
+import Data.Functor as Exports hiding (unzip)
+#else
 import Data.Functor as Exports
+#endif
+
 import Data.Functor.Compose as Exports
 import Data.IORef as Exports
 import Data.Int as Exports
