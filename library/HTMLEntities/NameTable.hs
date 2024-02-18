@@ -1,3 +1,7 @@
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE QuasiQuotes #-}
+
 -- |
 -- A named entities table as per
 -- <https://html.spec.whatwg.org/multipage/entities.json>.
@@ -30,9 +34,23 @@ nameByTextTable :: HM.HashMap Text Text
 nameByTextTable =
   HM.fromList $ map swap list
 
+-- ghc-8.6.5 performance:
+--
+-- old build time:             6.936s
+-- old NameTable.o size:      2004584
+-- new build time:             3.775s
+-- new NameTable.o size:        89640
+--
+-- ghcjs-8.6 performance:
+--
+-- old build time:            12.227s
+-- old NameTable.js_o size: 271045795 (yes, 271 megabytes)
+-- new build time:             3.931s
+-- new NameTable.js_o size:    169604
+
 {-# INLINE list #-}
 list :: [(Text, Text)]
-list =
+list = read [lit|
   [ ("Aacute", "\x00C1"),
     ("Aacute", "\x00C1"),
     ("aacute", "\x00E1"),
@@ -2265,3 +2283,4 @@ list =
     ("zwj", "\x200D"),
     ("zwnj", "\x200C")
   ]
+  |]
